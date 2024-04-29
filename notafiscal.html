@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    .container {
+      display: flex;
+      align-items: flex-start;
+    }
+    .image-container {
+      margin-right: 20px;
+    }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .text-container {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1></h1>
+  <div class="container">
+    <div class="image-container">
+      <img id="originalImage" src="nota.png" alt="Imagem Anterior" width="759" height="427">
+      <canvas id="processedImage" width="759" height="427" style="display: none;"></canvas>
+    </div>
+    <div class="form-container">
+      <form id="dataForm">
+        Nome: <input type="text" name="nome"><br>
+        RG: <input type="text" name="rg"><br>
+        Registro: <input type="text" name="registro" readonly><br>
+        Data de Registro: <input type="text" name="data_registro" readonly><br>
+        Data de Validade: <input type="text" name="data_validade" readonly><br>
+        Empresa:
+        <select name="empresa" onchange="atualizarCNPJ()">
+          <option value="">Selecione a empresa</option>
+          <option value="BAHAMAS">BAHAMAS</option>
+          <option value="ELEMENTS LTDA">ELEMENTS LTDA</option>
+          <option value="CDD LTDA">CDD LTDA</option>
+          <option value="FRANÇA LTDA">FRANÇA LTDA</option>
+          <option value="BRATVA LTDA">BRATVA LTDA</option>
+          <option value="ANONYMOUS">ANONYMOUS</option>
+          <option value="MEDELIN">MEDELIN</option>
+          <option value="MOTOCLUB">MOTOCLUB</option>
+          <option value="LS CUSTOMS LTDA">LS CUSTOMS LTDA</option>
+          <option value="CROACIA LTDA">CROACIA LTDA</option>
+        </select><br>
+        CNPJ: <input type="text" name="cnpj" readonly><br>
+        Itens:
+        <textarea name="itens" rows="4" readonly></textarea><br>
+        Quantidade: <input type="text" name="quantidade" value="600 (POR CPF)" readonly><br>
+        <button type="submit">Confirmar</button>
+      </form>
+      <div id="textContainer" class="text-container" style="display: none;"></div>
+      <button id="copyButton">Copiar</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('dataForm');
+    const originalImage = document.getElementById('originalImage');
+    const processedImage = document.getElementById('processedImage');
+    const textContainer = document.getElementById('textContainer');
+    const copyButton = document.getElementById('copyButton');
+
+    // Gerar número aleatório de 6 dígitos para o registro
+    form.elements.registro.value = Math.floor(Math.random() * 900000) + 100000;
+
+    // Definir data de registro como a data atual (29/04/2024)
+    const dataAtual = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    form.elements.data_registro.value = dataAtual;
+
+    // Definir data de validade como a data atual mais 5 dias
+    const dataValidade = new Date();
+    dataValidade.setDate(dataValidade.getDate() + 5);
+    form.elements.data_validade.value = dataValidade.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    // Função para atualizar o CNPJ e os itens com base na empresa selecionada
+    function atualizarCNPJ() {
+      const empresa = form.elements.empresa.value;
+      let cnpj = '';
+      let itens = '';
+
+      switch (empresa) {
+        case 'BAHAMAS':
+          cnpj = '59.845.961/0001-30';
+          itens = 'Alumínio\nAlvejante\nPano\nLinha';
+          break;
+        case 'ELEMENTS LTDA':
+          cnpj = '10.212.702/100-90';
+          itens = 'Cápsulas\nPólvora';
+          break;
+        case 'CDD LTDA':
+          cnpj = '12.446.808/205-20';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;
+        case 'FRANÇA LTDA':
+          cnpj = '45.218.889/100-70';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;
+        case 'BRATVA LTDA':
+          cnpj = '09.678.772/120-44';
+          itens = 'Cápsulas\nPólvora';
+          break;
+        case 'ANONYMOUS':
+          cnpj = '18.315.416/0001-80';
+          itens = 'Peças de Arma';
+          break;
+        case 'MEDELIN':
+          cnpj = '27.248.381/0001-50';
+          itens = 'Peças de Arma';
+          break;
+        case 'MOTOCLUB':
+          cnpj = '87.554.341/7418-15';
+          itens = 'Cápsulas\nPólvora';
+          break;
+        case 'LS CUSTOMS LTDA':
+          cnpj = '86.159.408/0001-40';
+          itens = 'Metal\nPlástico\nPapel\nTinta\nAnfetamina';
+          break;
+        case 'CROACIA LTDA':
+          cnpj = '48.957.679/0001-20';
+          itens = 'Peças de Arma\nSemente\nAdubo\nÓpio\nMorfina';
+          break;
+        default:
+          cnpj = '';
+          itens = '';
+      }
+
+      form.elements.cnpj.value = cnpj;
+      form.elements.itens.value = itens;
+    }
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nome = form.elements.nome.value;
+      const rg = form.elements.rg.value;
+      const registro = form.elements.registro.value;
+      const dataRegistro = form.elements.data_registro.value;
+      const dataValidade = form.elements.data_validade.value;
+      const empresa = form.elements.empresa.value;
+      const cnpj = form.elements.cnpj.value;
+      const itens = form.elements.itens.value;
+      const quantidade = form.elements.quantidade.value;
+
+      const ctx = processedImage.getContext('2d');
+      ctx.drawImage(originalImage, 0, 0, 759, 427);
+
+      ctx.font = '16px "Courier New"';
+      ctx.fillStyle = 'black';
+
+      const positions = {
+        nome: [30, 238],
+        rg: [514, 238],
+        registro: [514, 209],
+        dataRegistro: [650, 160],
+        dataValidade: [650, 209],
+        empresa: [85, 277],
+        cnpj: [445, 160],
+        itens: [85, 328],
+        quantidade: [420, 328]
+      };
+
+      for (const [field, position] of Object.entries(positions)) {
+    const value = eval(field);
+    if (field === 'itens' || field === 'quantidade') {
+      ctx.font = '14px "Courier New"'; // Define o tamanho da fonte para 14 para Itens e Quantidade
+      if (field === 'itens') {
+        const itemLines = value.split('\n');
+        let yPosition = position[1];
+        for (const line of itemLines) {
+          ctx.fillText(line, position[0], yPosition);
+          yPosition += 20;
+        }
+      } else if (field === 'quantidade') {
+        const itemLines = itens.split('\n');
+        let yPosition = position[1];
+        for (let i = 0; i < itemLines.length; i++) {
+          ctx.fillText(quantidade, position[0], yPosition);
+          yPosition += 20;
+        }
+      }
+      ctx.font = '16px "Courier New"'; // Restaura o tamanho da fonte para 16 após preencher Itens e Quantidade
+    } else if (field === 'rg') {
+      ctx.font = '12px "Courier New"'; // Mantém o tamanho da fonte de 12 para o RG
+      ctx.fillText(value, position[0], position[1]);
+      ctx.font = '16px "Courier New"'; // Restaura o tamanho da fonte para 16 após preencher o RG
+    } else {
+      ctx.fillText(value, position[0], position[1]);
+    }
+  }
+
+      originalImage.style.display = 'none';
+      processedImage.style.display = 'block';
+
+   textContainer.innerHTML = `⚖️ NF-E ⚖️\n\nRazão Social: ${empresa}\nCNPJ: ${cnpj}\n\nData de Emissão: ${dataRegistro}\nData de Validade: ${dataValidade}\n\nRG: ${rg}`;
+textContainer.style.display = 'block';
+    });
+
+    copyButton.addEventListener('click', function() {
+  const textToCopy = '```' + textContainer.innerHTML.replace(/<br>/g, '\n').replace(/&nbsp;/g, ' ') + '```';
+  navigator.clipboard.writeText(textToCopy)
+    .then(function() {
+      alert('Texto copiado para a área de transferência!');
+    })
+    .catch(function(error) {
+      console.error('Erro ao copiar o texto:', error);
+    });
+});
+  </script>
+</body>
+</html>
