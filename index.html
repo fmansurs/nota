@@ -49,6 +49,7 @@
           <option value="LS CUSTOMS LTDA">LS CUSTOMS LTDA</option>
           <option value="CROACIA LTDA">CROACIA LTDA</option>
           <option value="YAKUZA LTDA">YAKUZA LTDA</option>
+          <option value="MEIER LTDA">MEIER LTDA</option>
         </select><br>
         CNPJ: <input type="text" name="cnpj" readonly><br>
         Itens:
@@ -131,7 +132,11 @@
           cnpj = '67.517.856/0001-30';
           itens = 'Peças de Arma';
           break;
-        default:
+          case 'MEIER LTDA':
+          cnpj = '17.519.378/0001-90';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora\nLinha\nPano';
+          break;
+          default:
           cnpj = '';
           itens = '';
       }
