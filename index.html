@@ -54,6 +54,7 @@
            <option value="HELIPA LTDA">HELIPA LTDA</option>
            <option value="JACAREZINHO LTDA">JACAREZINHO LTDA</option>
            <option value="GROTA LTDA">GROTA LTDA</option>
+          <option value="MARCONE LTDA">MARCONE LTDA</option>
         </select><br>
         CNPJ: <input type="text" name="cnpj" readonly><br>
         Itens:
@@ -92,57 +93,37 @@
       let itens = '';
 
       switch (empresa) {
+       case 'ANONYMOUS':
+          cnpj = '18.315.416/0001-80';
+          itens = 'Peças de Arma';
+          break;
         case 'BAHAMAS':
           cnpj = '59.845.961/0001-30';
           itens = 'Alumínio\nAlvejante\nPano\nLinha';
-          break;
-        case 'ELEMENTS LTDA':
-          cnpj = '10.212.702/100-90';
-          itens = 'Cápsulas\nPólvora';
-          break;
-        case 'CDD LTDA':
-          cnpj = '12.446.808/205-20';
-          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
-          break;
-        case 'FRANÇA LTDA':
-          cnpj = '45.218.889/100-70';
-          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
           break;
         case 'BRATVA LTDA':
           cnpj = '09.678.772/120-44';
           itens = 'Cápsulas\nPólvora';
           break;
-        case 'ANONYMOUS':
-          cnpj = '18.315.416/0001-80';
-          itens = 'Peças de Arma';
+          case 'CDD LTDA':
+          cnpj = '12.446.808/205-20';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
           break;
-        case 'MEDELIN':
-          cnpj = '27.248.381/0001-50';
-          itens = 'Peças de Arma';
-          break;
-        case 'MOTOCLUB':
-          cnpj = '87.554.341/7418-15';
-          itens = 'Cápsulas\nPólvora';
-          break;
-        case 'LS CUSTOMS LTDA':
-          cnpj = '86.159.408/0001-40';
-          itens = 'Metal\nPlástico\nPapel\nTinta\nAnfetamina';
-          break;
-        case 'CROACIA LTDA':
+          case 'CROACIA LTDA':
           cnpj = '48.957.679/0001-20';
           itens = 'Peças de Arma\nSemente\nAdubo\nÓpio\nMorfina';
           break;
-          case 'YAKUZA LTDA':
-          cnpj = '67.517.856/0001-30';
-          itens = 'Peças de Arma';
+          case 'ELEMENTS LTDA':
+          cnpj = '10.212.702/100-90';
+          itens = 'Cápsulas\nPólvora';
           break;
-          case 'MEIER LTDA':
-          cnpj = '17.519.378/0001-90';
+        case 'FRANÇA LTDA':
+          cnpj = '45.218.889/100-70';
           itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
           break;
-          case 'ROCINHA LTDA':
-          cnpj = '65.876.333/2001-19';
-          itens = 'Peças de Arma\nSemente\nAdubo\nÓpio\nMorfina';
+           case 'GROTA LTDA':
+          cnpj = '81.348.591/0001-99';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
           break;
           case 'HELIPA LTDA':
           cnpj = '19.234.325/0001-00';
@@ -152,9 +133,33 @@
           cnpj = '27.971.751/0001-59';
           itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
           break;
-          case 'GROTA LTDA':
-          cnpj = '81.348.591/0001-99';
+          case 'LS CUSTOMS LTDA':
+          cnpj = '86.159.408/0001-40';
+          itens = 'Metal\nPlástico\nPapel\nTinta\nAnfetamina';
+          break;
+          case 'MARCONE LTDA':
+          cnpj = '35.980.786/0001-24';
           itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;
+          case 'MEDELIN':
+          cnpj = '27.248.381/0001-50';
+          itens = 'Peças de Arma';
+          break;
+          case 'MEIER LTDA':
+          cnpj = '17.519.378/0001-90';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;
+          case 'MOTOCLUB':
+          cnpj = '87.554.341/7418-15';
+          itens = 'Cápsulas\nPólvora';
+          break;
+          case 'ROCINHA LTDA':
+          cnpj = '65.876.333/2001-19';
+          itens = 'Peças de Arma\nSemente\nAdubo\nÓpio\nMorfina';
+          break;
+          case 'YAKUZA LTDA':
+          cnpj = '67.517.856/0001-30';
+          itens = 'Peças de Arma';
           break;
           default:
           cnpj = '';
