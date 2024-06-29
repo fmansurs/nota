@@ -34,7 +34,13 @@
         RG: <input type="text" name="rg"><br>
         Registro: <input type="text" name="registro" readonly><br>
         Data de Registro: <input type="text" name="data_registro" readonly><br>
-        Data de Validade: <input type="text" name="data_validade" readonly><br>
+       Data de Validade:
+        <select name="dias_validade" onchange="atualizarDataValidade()">
+        <option value="5">5 dias</option>
+        <option value="10">10 dias</option>
+        <option value="15">15 dias</option>
+        </select><br>
+<input type="text" name="data_validade" readonly><br>
         Empresa:
         <select name="empresa" onchange="atualizarCNPJ()">
           <option value="">Selecione a empresa</option>
@@ -83,11 +89,13 @@
     const dataAtual = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
     form.elements.data_registro.value = dataAtual;
 
-    // Definir data de validade como a data atual mais 5 dias
-    const dataValidade = new Date();
-    dataValidade.setDate(dataValidade.getDate() + 5);
-    form.elements.data_validade.value = dataValidade.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-
+    // Definir data de validade como a data atual mais 5, 10 ou 15 dias
+   function atualizarDataValidade() {
+  const diasValidade = parseInt(form.elements.dias_validade.value);
+  const dataValidade = new Date();
+  dataValidade.setDate(dataValidade.getDate() + diasValidade);
+  form.elements.data_validade.value = dataValidade.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
     // Função para atualizar o CNPJ e os itens com base na empresa selecionada
     function atualizarCNPJ() {
       const empresa = form.elements.empresa.value;
