@@ -47,9 +47,12 @@
           <option value="">Selecione a empresa</option>
           <option value="ANONYMOUS">ANONYMOUS</option>
           <option value="BAHAMAS">BAHAMAS</option>
+          <option value="BELGICA LTDA">BELGICA LTDA</option>
           <option value="BENNYS LTDA">BENNYS LTDA</option>
            <option value="BRATVA LTDA">BRATVA LTDA</option>
-           <option value="CDD LTDA">CDD LTDA</option>
+           <option value="CARTEL LTDA">CARTEL LTDA</option>
+          <option value="CDD LTDA">CDD LTDA</option>
+          <option value="COMANDO VERMELHO LTDA">COMANDO VERMELHO LTDA</option>
           <option value="CROACIA LTDA">CROACIA LTDA</option>
           <option value="ELEMENTS LTDA">ELEMENTS LTDA</option>
           <option value="FRANÇA LTDA">FRANÇA LTDA</option>
@@ -122,10 +125,22 @@
           cnpj = '09.678.772/120-44';
           itens = 'Cápsulas\nPólvora';
           break;
+          case 'BELGICA LTDA':
+          cnpj = '37.965.914/0001-05';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;
+          case 'CARTEL LTDA':
+          cnpj = '89.456.890/6666-24';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;
           case 'CDD LTDA':
           cnpj = '12.446.808/205-20';
           itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
           break;
+          case 'COMANDO VERMELHO LTDA':
+          cnpj = '87.654.321/0001-09';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;  
           case 'CROACIA LTDA':
           cnpj = '48.957.679/0001-20';
           itens = 'Peças de Arma\nSemente\nAdubo\nÓpio\nMorfina';
@@ -264,7 +279,7 @@ textContainer.style.display = 'block';
 
     copyButton.addEventListener('click', function() {
   const textToCopy = '```' + textContainer.innerHTML.replace(/<br>/g, '\n').replace(/&nbsp;/g, ' ') + '```';
-  navigator.clipboard.writeText(textToCopy)
+  navigator.clipboard.writeText(textToCopy) 
     .then(function() {
       alert('Texto copiado para a área de transferência!');
     })
