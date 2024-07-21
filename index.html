@@ -45,6 +45,7 @@
         Empresa:
         <select name="empresa" onchange="atualizarCNPJ()">
           <option value="">Selecione a empresa</option>
+          <option value="ADA LTDA">ADA LTDA</option>
           <option value="ANONYMOUS">ANONYMOUS</option>
           <option value="BAHAMAS">BAHAMAS</option>
           <option value="BELGICA LTDA">BELGICA LTDA</option>
@@ -109,6 +110,10 @@
       let itens = '';
 
       switch (empresa) {
+          case 'ADA LTDA':
+          cnpj = '97.625.419/0001-90';
+          itens = 'Anfetamina\nPasta Impura\nCápsulas\nPólvora';
+          break;
        case 'ANONYMOUS':
           cnpj = '18.315.416/0001-80';
           itens = 'Peças de Arma';
